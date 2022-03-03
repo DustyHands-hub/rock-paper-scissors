@@ -26,29 +26,40 @@
     </style>
 
     <script>
-        function computerPlay() {
-            const min = 1;
-            const max = 3;
-            const rndInt = Math.floor(Math.random() * (max - min + 1) + min);
-
-            if (rndInt == 1) {
-            return "ROCK";
-        } else if (rndInt == 2) {
-            return "PAPER";
-        } else {
-            return "SCISSORS";
-        }
-        }
+        let playerPoints = 0;
+        let computerPoints = 0;
+        let roundWinner = '';
 
         function playRound(playerSelection, computerSelection) {
-            let userAdjective = prompt("Choose your weapon!");
-            let getUserInput = userAdjective.toUpperCase();
-            return getUserInput;
+            if (playerSelection === computerSelection) {
+                roundWinner = 'tie';
+            }
+            if (
+                (playerSelection === 'WATER' && computerSelection === 'FIRE') ||
+                (playerSelection === 'FIRE' && computerSelection === 'GRASS') ||
+                (playerSelection === 'GRASS' && computerSelection === 'WATER')
+                ) {
+                    playerPoints++;
+                    roundWinner = 'player';
+                }
+            updateScore(roundWinner, playerSelection, computerSelection);
         }
 
-        const playerSelection = getUserInput;
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
+        function getComputerChoice {
+            let rndInt = Math.floor(Math.random() * 3)
+            switch (rndInt) {
+                case 0:
+                    return 'WATER'
+                case 1:
+                    return 'FIRE'
+                case 2: 
+                    return 'GRASS'
+            }
+        }
+
+        function gameOver() {
+            return playerPoints === 5 || computerPoints === 5
+        }
     </script>
 </head>
 <body>
