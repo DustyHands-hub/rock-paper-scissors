@@ -42,10 +42,18 @@
                     playerPoints++;
                     roundWinner = 'player';
                 }
+                if (
+                (computerSelection === 'WATER' && playerSelection === 'FIRE') ||
+                (computerSelection === 'FIRE' && playerSelection === 'GRASS') ||
+                (computerSelection === 'GRASS' && playerSelection === 'WATER')
+                ) {
+                    computerPoints++;
+                    roundWinner = 'computer';
+                }
             updateScore(roundWinner, playerSelection, computerSelection);
         }
 
-        function getComputerChoice {
+        function computerPlay() {
             let rndInt = Math.floor(Math.random() * 3)
             switch (rndInt) {
                 case 0:
@@ -57,14 +65,22 @@
             }
         }
 
+        function playerPlay() {
+            let playerSelection = prompt('Choose your element');
+            playerSelection = playerSelection.toUpperCase();
+            console.log(playerSelection);
+        }
+
         function gameOver() {
             return playerPoints === 5 || computerPoints === 5
         }
+
+        console.log(computerPlay());
     </script>
 </head>
 <body>
     <div class="container">
-        <button id="bgnBtn" onclick="playRound()">Start Game</button>
+        <button id="bgnBtn" onclick="playerPlay()">Start Game</button>
     </div>
 </body>
 </html>
