@@ -2,31 +2,8 @@ let playerPoints = 0;
 let computerPoints = 0;
 let roundWinner = '';
 
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        roundWinner = 'tie';
-    }
-    if (
-        (playerSelection === 'WATER' && computerSelection === 'FIRE') ||
-        (playerSelection === 'FIRE' && computerSelection === 'GRASS') ||
-        (playerSelection === 'GRASS' && computerSelection === 'WATER')
-        ) {
-            playerPoints++;
-            roundWinner = 'player';
-        }
-        if (
-        (computerSelection === 'WATER' && playerSelection === 'FIRE') ||
-        (computerSelection === 'FIRE' && playerSelection === 'GRASS') ||
-        (computerSelection === 'GRASS' && playerSelection === 'WATER')
-        ) {
-            computerPoints++;
-            roundWinner = 'computer';
-        }
-    updateScore(roundWinner, playerSelection, computerSelection);
-}
-
 function computerPlay() {
-    let rndInt = Math.floor(Math.random() * 3)
+    let rndInt = Math.floor(Math.random() * 3);
     switch (rndInt) {
         case 0:
             return 'WATER'
@@ -37,14 +14,54 @@ function computerPlay() {
     }
 }
 
+let computerSelection = computerPlay();
+function playRound(playerSelection, computerSelection) {
+    playerPlay();
+    computerPlay();
+    if (playerSelection === computerSelection) {
+        roundWinner = 'tie';
+    }
+    if (
+        (playerSelection === 'WATER' && computerSelection === 'FIRE') ||
+        (playerSelection === 'FIRE' && computerSelection === 'GRASS') ||
+        (playerSelection === 'GRASS' && computerSelection === 'WATER')
+        ) {
+            playerPoints++;
+            roundWinner = 'player';
+            console.log('Player Wins!');
+        }
+        if (
+        (computerSelection === 'WATER' && playerSelection === 'FIRE') ||
+        (computerSelection === 'FIRE' && playerSelection === 'GRASS') ||
+        (computerSelection === 'GRASS' && playerSelection === 'WATER')
+        ) {
+            computerPoints++;
+            roundWinner = 'computer';
+            console.log('Computer Wins!');
+        }
+    console.log(`Player: ${playerPoints} Computer: ${computerPoints}`);
+}
+
 function playerPlay() {
     let playerSelection = prompt('Choose your element');
     playerSelection = playerSelection.toUpperCase();
     console.log(playerSelection);
 }
 
-function gameOver() {
-    return playerPoints === 5 || computerPoints === 5
+function game() {
+    for (let i = 0; i < 5; i++) {
+        playRound();
+    }
+    gameOver()
 }
 
-console.log(computerPlay());
+function gameOver() {
+    console.log('GAME OVER!');
+    if (playerPoints === computerPoints) {
+        console.log('TIE');
+    } else if (playerPoints > computerPoints) {
+        console.log('Player Wins!');
+    } else {
+        console.log('Computer Wins!');
+    }
+}
