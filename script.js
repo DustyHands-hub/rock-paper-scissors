@@ -2,22 +2,42 @@ let playerPoints = 0;
 let computerPoints = 0;
 let roundWinner = '';
 
-function computerPlay() {
-    let rndInt = Math.floor(Math.random() * 3);
-    switch (rndInt) {
-        case 0:
-            return 'WATER'
-        case 1:
-            return 'FIRE'
-        case 2: 
-            return 'GRASS'
-    }
-}
+// function computerPlay() {
+//     let rndInt = Math.floor(Math.random() * 3);
+//     switch (rndInt) {
+//         case 0:
+//             return 'WATER'
+//         case 1:
+//             return 'FIRE'
+//         case 2: 
+//             return 'GRASS'
+//     }
+// }
 
-let computerSelection = computerPlay();
+let computerSelection = (
+    function computerPlay() {
+        let rndInt = Math.floor(Math.random() * 3);
+        switch (rndInt) {
+            case 0:
+                return 'WATER'
+            case 1:
+                return 'FIRE'
+            case 2: 
+                return 'GRASS'
+        }
+    }
+)();
+
+let playerSelection = (
+    function playerPlay() {
+        prompt('Choose your element');
+        playerSelection = playerSelection.toUpperCase();
+        console.log(playerSelection);
+    }
+)();
+
 function playRound(playerSelection, computerSelection) {
     playerPlay();
-    computerPlay();
     if (playerSelection === computerSelection) {
         roundWinner = 'tie';
     }
@@ -42,11 +62,11 @@ function playRound(playerSelection, computerSelection) {
     console.log(`Player: ${playerPoints} Computer: ${computerPoints}`);
 }
 
-function playerPlay() {
-    let playerSelection = prompt('Choose your element');
-    playerSelection = playerSelection.toUpperCase();
-    console.log(playerSelection);
-}
+// function playerPlay() {
+//     let playerSelection = prompt('Choose your element');
+//     playerSelection = playerSelection.toUpperCase();
+//     console.log(playerSelection);
+// }
 
 function game() {
     for (let i = 0; i < 5; i++) {
