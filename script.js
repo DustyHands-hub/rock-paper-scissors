@@ -2,44 +2,52 @@ let playerPoints = 0;
 let computerPoints = 0;
 let roundWinner = '';
 
-// function computerPlay() {
-//     let rndInt = Math.floor(Math.random() * 3);
-//     switch (rndInt) {
-//         case 0:
-//             return 'WATER'
-//         case 1:
-//             return 'FIRE'
-//         case 2: 
-//             return 'GRASS'
-//     }
-// }
 
-let computerSelection = (
-    function computerPlay() {
-        let rndInt = Math.floor(Math.random() * 3);
-        switch (rndInt) {
-            case 0:
-                return 'WATER'
-            case 1:
-                return 'FIRE'
-            case 2: 
-                return 'GRASS'
-        }
-    }
-)();
 
-let playerSelection = (
-    function playerPlay() {
-        prompt('Choose your element');
-        playerSelection = playerSelection.toUpperCase();
-        console.log(playerSelection);
+function computerPlay() {
+    let computerSelection = Math.floor(Math.random() * 3);
+
+    switch (computerSelection) {
+        case 0:
+            return 'WATER'
+        case 1:
+            return 'FIRE'
+        case 2: 
+            return 'GRASS'
     }
-)();
+}
+
+
+function playerPlay() {
+    let playerSelection = prompt('Choose your element');
+    playerSelection = playerSelection.toUpperCase();
+
+    switch (playerSelection) {
+        case 'FIRE':
+            return 'FIRE'
+        case 'WATER':
+            return 'WATER'
+        case 'GRASS':
+            return 'GRASS'
+        default:
+            return badChoice()
+    }
+}
+
+function badChoice() {
+    console.log('Unrecognized Answer');
+}
 
 function playRound(playerSelection, computerSelection) {
-    playerPlay();
+    playerSelection = playerPlay();
+    computerSelection = computerPlay();
+
+    console.log(`Player played ${playerSelection}`);
+    console.log(`Computer played ${computerSelection}`);
+
     if (playerSelection === computerSelection) {
         roundWinner = 'tie';
+        console.log('Tied!');
     }
     if (
         (playerSelection === 'WATER' && computerSelection === 'FIRE') ||
@@ -60,13 +68,12 @@ function playRound(playerSelection, computerSelection) {
             console.log('Computer Wins!');
         }
     console.log(`Player: ${playerPoints} Computer: ${computerPoints}`);
-}
 
-// function playerPlay() {
-//     let playerSelection = prompt('Choose your element');
-//     playerSelection = playerSelection.toUpperCase();
-//     console.log(playerSelection);
-// }
+    let givePlayerPoints = playerPoints;
+    let giveComputerPoints = computerPoints;
+    document.getElementById('pScore').innerHTML = givePlayerPoints;
+    document.getElementById('cScore').innerHTML = giveComputerPoints;
+}
 
 function game() {
     for (let i = 0; i < 5; i++) {

@@ -11,17 +11,40 @@
             width: 300px;  
             height: 300px;   
             display: flex;  
-            justify-content: center;  
+            justify-content: space-around;  
             align-items: center;  
             margin: auto;
         }
 
-        #bgnBtn {
+        .buttonContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #bgnBtn {;
+            
             background-color: lightblue;  
             color: black;  
             font-size: 25px;  
             width: 200px;
             height: 200px;
+        }
+
+        #playerLogo,#computerLogo {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex: 1;
+
+            text-align: center;
+            height: 100px;
+            width: 150px;
+            margin:100px;
+            padding: 25px;
+            background-color: grey;
+            border: solid;
+            border-color: lightslategray;
         }
     </style>
 
@@ -31,7 +54,17 @@
 </head>
 <body>
     <div class="container">
-        <button id="bgnBtn" onclick="game()">Start Game</button>
+        <div id="playerLogo">
+            <h3>Player Score: <span id="pScore"></h3>
+            <img src="" alt="">
+        </div>
+        <div class="buttonContainer">
+            <button id="bgnBtn" onclick="game()">Start Game</button>
+        </div>
+        <div id="computerLogo">
+            <h3>Computer Score: <span id="cScore"></span></h3>
+            <img src="" alt="">
+        </div>
     </div>
 </body>
 </html>
