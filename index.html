@@ -22,8 +22,7 @@
             align-items: center;
         }
 
-        #bgnBtn {;
-            
+        #bgnBtn {
             background-color: lightblue;  
             color: black;  
             font-size: 25px;  
@@ -42,9 +41,54 @@
             width: 150px;
             margin:100px;
             padding: 25px;
-            background-color: grey;
+            background-color: silver;
             border: solid;
             border-color: lightslategray;
+        }
+
+        #playList {
+            display: flex;
+            flex: auto;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            text-align: center;
+        }
+
+        .break {
+            flex-basis: 100%;
+            height: 0;
+        }
+
+        #pickWeapon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            gap: 300px;
+
+            text-align: center;
+            margin: 0;
+            background-color: silver;
+        }
+
+        .fire,.water,.grass { 
+            color: black;  
+            font-size: 25px;  
+            width: 100px;
+            height: 100px;
+        }
+
+        .fire {
+            background-color: brown;
+        }        
+
+        .water {
+            background-color: darkcyan;
+        }
+
+        .grass {
+            background-color: darkgreen;
         }
     </style>
 
@@ -58,13 +102,24 @@
             <h3>Player Score: <span id="pScore"></h3>
             <img src="" alt="">
         </div>
-        <div class="buttonContainer">
+        <!-- <div class="buttonContainer">
             <button id="bgnBtn" onclick="game()">Start Game</button>
-        </div>
+        </div> -->
         <div id="computerLogo">
             <h3>Computer Score: <span id="cScore"></span></h3>
             <img src="" alt="">
         </div>
+    </div>
+    <div id="pickWeapon">
+        <button onclick="choseFire()" class="fire">Fire</button>
+        <button onclick="choseWater()" class="water">Water</button>
+        <button onclick="choseGrass()" class="grass">Grass</button>
+    </div>
+    <div id="playList">
+        <h2 class="pPick">Player played <br><span id="playPlay"></span></h2>
+        <h2 class="cPick">Computer played <br><span id="comPlay"></span></h2>
+        <div class="break"></div>
+        <h1 class="winDisp">Winner: <br><span id="showWinner"></span></h1>
     </div>
 </body>
 </html>
